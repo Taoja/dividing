@@ -1,0 +1,52 @@
+{
+  "name": "dividing",
+  "version": "1.0.1",
+  "description": "a tool for multi-page project",
+  "keywords": [
+    "splitter",
+    "vue",
+    "dividing",
+    "split",
+    "vue-split",
+    "multi",
+    "multipage"
+  ],
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/Taoja/dividing/issues",
+    "email": "346792184@qq.com"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "黄武韬",
+    "email": "346792184@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Taoja/dividing"
+  },
+  "engines": {
+    "node": ">=6.11.5"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "divide": "0.0.3",
+    "file-loader": "^2.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "fs": "^0.0.1-security",
+    "html-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
+    "readline": "^1.3.0",
+    "rimraf": "^2.6.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dashboard": "^2.0.0",
+    "webpack-dev-server": "^3.1.7"
+  },
+  "devDependencies": {}
+}
