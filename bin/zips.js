@@ -3,6 +3,7 @@ const archiver = require('archiver')
 
 const config = require('../lib/config')
 const resolve = require('../lib/resolve')
+const {__isEmptyObject} = require('../lib/help')
 
 var outputdir = config.default.output
 var packages = []
@@ -15,10 +16,14 @@ dist.forEach(function (item) {
 })
 packages.forEach(function (item) {
   var zipName
-  if (item in config.default.packageID) {
-    zipName = config.default.packageID[item]
+  if (!__isEmptyObject(config.default.packageID)) {
+    if (item in config.default.packageID) {
+      zipName = config.default.packageID[item]
+    } else {
+      zipName = config.default.packageID.static
+    }
   } else {
-    zipName = config.default.packageID.static
+    zipName = item
   }
   var output = fs.createWriteStream(resolve(`${outputdir}/${zipName}.zip`))
   var ac = archiver('zip', {
