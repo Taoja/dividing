@@ -5,6 +5,7 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? config.dev.devtool : config.build.devtool,
   devServer: {
+    clientLogLevel: 'warning',
     host: config.dev.host,    // 服务器的IP地址，可以使用IP也可以使用localhost
     compress: true,    // 服务端压缩是否开启
     port: config.dev.port, // 端口
@@ -16,7 +17,8 @@ module.exports = {
       errors: true
     },
     progress: true, //输出进度到控制台
-    quiet: true
+    quiet: true,
+    openPage: config.dev.open
   },
   externals: config.default.externals,
   resolve: config.default.resolve,
