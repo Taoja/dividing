@@ -28,7 +28,7 @@ module.exports = {
       type === 'single' ? {
         test: /src[\/|\\]modules[\/|\\][_a-zA-Z0-9]+[\/|\\][_a-zA-Z0-9]+[\/|\\][_a-zA-Z0-9]+[\/|\\]index.js/,
         use: {
-          loader: 'vue-splitter/loader/pagesLoader.js',
+          loader: 'dividing/loader/pagesLoader.js',
         } 
       } : {}
     ]

@@ -36,17 +36,17 @@ module.exports = function (e) {
       'ENV': configEnv[_G.env]
     })
   ]
-  if (dashboard) {
-    plugins.push(new DashboardPlugin(dashboardConfig.setData))
-  } else {
-    if (isDev) {
+  if (isDev) {
+    if (dashboard) {
+      plugins.push(new DashboardPlugin(dashboardConfig.setData))
+    } else {
       plugins.push(new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {
           messages: [`应用已启动，请访问：http://${config.dev.host}:${config.dev.port}`]
         }
       }))
-      plugins.push(new webpack.HotModuleReplacementPlugin())
     }
+    plugins.push(new webpack.HotModuleReplacementPlugin())
   }
 
 
