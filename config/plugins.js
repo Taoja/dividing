@@ -9,6 +9,8 @@ const {isDev, type, dashboard} = require('../lib/args')
 const resolve = require('../lib/resolve')
 const entrys = require('../lib/ps')
 
+const setConf = require('../plugins/setConf')
+
 if (dashboard) {
   var Dashboard = require('webpack-dashboard');
   var DashboardPlugin = require('webpack-dashboard/plugin');
@@ -25,6 +27,7 @@ module.exports = function (e) {
     configEnv[key] = JSON.stringify(config.default.env[key])
   }
   var plugins = [
+    new setConf(),
     new CopyWebpackPlugin([
       { 
         from: resolve('static'), 
