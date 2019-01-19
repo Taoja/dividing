@@ -18,9 +18,9 @@ packages.forEach(function (item) {
   var zipName
   if (!__isEmptyObject(config.default.packageID)) {
     if (item in config.default.packageID) {
-      zipName = config.default.packageID[item]
+      zipName = `${config.default.packageID[item]}/${item}`
     } else {
-      zipName = config.default.packageID.static
+      zipName = `${config.default.packageID.static}/${item}`
     }
   } else {
     zipName = item
@@ -30,6 +30,6 @@ packages.forEach(function (item) {
     zlib: { level: 9 }
   })
   ac.pipe(output)
-  ac.directory(resolve(`${outputdir}/${item}/`), `${zipName}/${item}`)
+  ac.directory(resolve(`${outputdir}/${item}/`), `${zipName}`)
   ac.finalize()
 })
