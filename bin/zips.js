@@ -1,5 +1,6 @@
 const fs = require('fs')
 const archiver = require('archiver')
+const rmrf = require('rimraf')
 
 const config = require('../lib/config')
 const resolve = require('../lib/resolve')
@@ -26,6 +27,9 @@ packages.forEach(function (item) {
     zipName = item
   }
   var output = fs.createWriteStream(resolve(`${outputdir}/${zipName}.zip`))
+  output.on('close', function() {
+    rmrf(resolve(`${outputdir}/${item}`), () => {})
+  })
   var ac = archiver('zip', {
     zlib: { level: 9 }
   })
