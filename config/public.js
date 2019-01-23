@@ -19,7 +19,6 @@ module.exports = {
     progress: true, //输出进度到控制台
     quiet: true,
     openPage: config.dev.open,
-    proxy: config.dev.proxy
   },
   externals: config.default.externals,
   resolve: config.default.resolve,
