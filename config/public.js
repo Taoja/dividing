@@ -17,7 +17,7 @@ module.exports = {
       errors: true
     },
     progress: true, //输出进度到控制台
-    quiet: false,
+    quiet: true,
     openPage: config.dev.open,
   },
   externals: config.default.externals,
