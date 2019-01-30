@@ -16,15 +16,17 @@ dist.forEach(function (item) {
   }
 })
 packages.forEach(function (item) {
-  var zipName
+  var zipName,outputName
   if (!__isEmptyObject(config.default.packageID)) {
     if (item in config.default.packageID) {
-      zipName = `${config.default.packageID[item]}/${item}`
+      zipName = `${config.default.packageID[item]}`
     } else {
-      zipName = `${config.default.packageID.static}/${item}`
+      zipName = `${config.default.packageID.static}`
     }
+    outputName = `${zipName}/${item}`
   } else {
     zipName = item
+    outputName = `${zipName}`
   }
   var output = fs.createWriteStream(resolve(`${outputdir}/${zipName}.zip`))
   output.on('close', function() {
@@ -34,6 +36,6 @@ packages.forEach(function (item) {
     zlib: { level: 9 }
   })
   ac.pipe(output)
-  ac.directory(resolve(`${outputdir}/${item}/`), `${zipName}`)
+  ac.directory(resolve(`${outputdir}/${item}/`), `${outputName}`)
   ac.finalize()
 })
