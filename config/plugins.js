@@ -18,6 +18,7 @@ if (dashboard) {
 }
 
 module.exports = function (e) {
+  var chunkName = config.default.chunks && config.default.chunks.name ? config.default.chunks.name : 'chunk'
   var configEnv = {}
   var configGlobal = {}
   for (key in config.default.global) {
@@ -57,7 +58,7 @@ module.exports = function (e) {
           new HtmlWebpackPlugin({ //入口配置
             filename: `${item}.html`,// 生成文件名
             template: 'index.html', // 模板文件
-            chunks: [`${item}`, `${item.split('/')[0]}/assets`],
+            chunks: [`${item}`, `${item.split('/')[0]}/${chunkName}`],
             static: publicPath + path
           })
         )
