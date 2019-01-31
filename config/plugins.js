@@ -51,13 +51,13 @@ module.exports = function (e) {
 
   if (type === 'multi') {
     var HWPs = []
-    if (isDev) {
+    // if (isDev) {
       for (var item in entrys) {
         HWPs.push(
           new HtmlWebpackPlugin({ //入口配置
             filename: `${item}.html`,// 生成文件名
             template: 'index.html', // 模板文件
-            chunks: [`${item}`],
+            chunks: [`${item}`, `${item.split('/')[0]}/assets`],
             static: publicPath + path
           })
         )
@@ -67,26 +67,26 @@ module.exports = function (e) {
         ...plugins,
         ...config.default.plugins
       ]
-    } else {
-      for (var item in entrys) {
-        var name = item.split('/')
-        if (name[0] === e) {
-          HWPs.push(
-            new HtmlWebpackPlugin({ //入口配置
-              filename: `${name[1]}/${name[2]}.html`,// 生成文件名
-              template: 'index.html', // 模板文件
-              chunks: [`${name[1]}/${name[2]}`],
-              static: publicPath + path
-            })
-          )
-        }
-      }
-      return [
-        ...HWPs,
-        ...plugins,
-        ...config.default.plugins
-      ]
-    }
+    // } else {
+    //   for (var item in entrys) {
+    //     var name = item.split('/')
+    //     if (name[0] === e) {
+    //       HWPs.push(
+    //         new HtmlWebpackPlugin({ //入口配置
+    //           filename: `${name[1]}/${name[2]}.html`,// 生成文件名
+    //           template: 'index.html', // 模板文件
+    //           chunks: [`${name[1]}/${name[2]}`],
+    //           static: publicPath + path
+    //         })
+    //       )
+    //     }
+    //   }
+    //   return [
+    //     ...HWPs,
+    //     ...plugins,
+    //     ...config.default.plugins
+    //   ]
+    // }
   } else {
     return [
       new HtmlWebpackPlugin({ //入口配置
