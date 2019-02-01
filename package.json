@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=6.11.5"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "archiver": "^3.0.0",
     "copy-webpack-plugin": "^4.5.2",

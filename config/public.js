@@ -1,6 +1,5 @@
 const { isDev, type } = require('../lib/args')
 const config = require('../lib/config')
-const resolve = require('../lib/resolve')
 
 module.exports = {
   mode: isDev ? 'development' : 'production',
