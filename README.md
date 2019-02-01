@@ -5,15 +5,17 @@
   <a href="https://travis-ci.org/Taoja/dividing"><img src="https://travis-ci.org/Taoja/dividing.svg?branch=master" alt="autobuild"></a>
   <a href="https://npmcharts.com/compare/dividing?minimal=true"><img src="https://img.shields.io/npm/dm/dividing.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/dividing"><img src="https://img.shields.io/npm/v/dividing.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/dividing"><img src="https://img.shields.io/npm/l/dividing.svg" alt="License"></a>
+  <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/Taoja/dividing.svg" alt="License"></a>
+</p>
+<p align="center">
   <a href="https://github.com/taoja/dividing/releases"><img src="https://img.shields.io/github/release/taoja/dividing.svg" alt="Version"></a>
   <a href="https://github.com/taoja/dividing/issues"><img src="https://img.shields.io/github/issues/taoja/dividing.svg" alt="issues"></a>
-  <a href="https://www.npmjs.com/package/dividing"><img src="https://img.shields.io/npm/l/dividing.svg" alt="License"></a>
   <a href="http://packagequality.com/#?package=dividing"><img src="https://npm.packagequality.com/shield/dividing.svg"/></a>
 </p>
 dividing是一套基于webpack的脚手架工具集，本工具致力于业务包拆分。
 
 # 特点
-[![Greenkeeper badge](https://badges.greenkeeper.io/Taoja/dividing.svg)](https://greenkeeper.io/)
 + 多工程化：分包机制让每一个包都有独立的工程环境，让各个包共享同一个资源环境，可独立打包发布，降低发布成本。可独立调试，减少开发成本。
 + 多环境支持：一套代码，多环境运行。通过配置[环境变量](#webpack配置)实现同一套代码不同环境编译效果，加快版本迭代速度。
 + 高拓展性：开放plugins、loader配置，可自行拓展脚本及加载器（默认支持vue、sass）
