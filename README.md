@@ -8,7 +8,7 @@
   <a href="https://github.com/taoja/dividing/releases"><img src="https://img.shields.io/github/release/taoja/dividing.svg" alt="Version"></a>
   <a href="https://github.com/taoja/dividing/issues"><img src="https://img.shields.io/github/issues/taoja/dividing.svg" alt="issues"></a>
   <a href="https://www.npmjs.com/package/dividing"><img src="https://img.shields.io/npm/l/dividing.svg" alt="License"></a>
-  <!-- <a href="https://packagephobia.now.sh/result?p=dividing"><img src="https://packagephobia.now.sh/badge?p=dividing" alt="install size"></a> -->
+  <a href="http://packagequality.com/#?package=dividing"><img src="https://npm.packagequality.com/shield/dividing.svg"/></a>
 </p>
 dividing是一套基于webpack的脚手架工具集，本工具致力于业务包拆分。
 
