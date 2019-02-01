@@ -17,90 +17,74 @@ if (dashboard) {
   var dashboardConfig = new Dashboard();
 }
 
-module.exports = function (e) {
-  var configEnv = {}
-  var configGlobal = {}
-  for (key in config.default.global) {
-    configGlobal[key] = JSON.stringify(config.default.global[key])
-  }
-  for (key in config.default.env) {
-    configEnv[key] = JSON.stringify(config.default.env[key])
-  }
-  var plugins = [
-    new setConf(),
-    new CopyWebpackPlugin([
-      { 
-        from: resolve('static'), 
-        to: resolve(`${config.default.output}/${path}`)
-      }
-    ]),
-    new webpack.DefinePlugin({
-      'Global': configGlobal,
-      'ENV': configEnv[_G.env]
-    })
-  ]
-  if (isDev) {
-    if (dashboard) {
-      plugins.push(new DashboardPlugin(dashboardConfig.setData))
-    } else {
-      plugins.push(new FriendlyErrorsWebpackPlugin({
-        compilationSuccessInfo: {
-          messages: [`应用已启动，请访问：http://${config.dev.host}:${config.dev.port}`]
-        }
-      }))
-    }
-    plugins.push(new webpack.HotModuleReplacementPlugin())
-  }
-
-
-  if (type === 'multi') {
-    var HWPs = []
-    if (isDev) {
-      for (var item in entrys) {
-        HWPs.push(
-          new HtmlWebpackPlugin({ //入口配置
-            filename: `${item}.html`,// 生成文件名
-            template: 'index.html', // 模板文件
-            chunks: [`${item}`],
-            static: publicPath + path
-          })
-        )
-      }
-      return [
-        ...HWPs,
-        ...plugins,
-        ...config.default.plugins
-      ]
-    } else {
-      for (var item in entrys) {
-        var name = item.split('/')
-        if (name[0] === e) {
-          HWPs.push(
-            new HtmlWebpackPlugin({ //入口配置
-              filename: `${name[1]}/${name[2]}.html`,// 生成文件名
-              template: 'index.html', // 模板文件
-              chunks: [`${name[1]}/${name[2]}`],
-              static: publicPath + path
-            })
-          )
-        }
-      }
-      return [
-        ...HWPs,
-        ...plugins,
-        ...config.default.plugins
-      ]
-    }
-  } else {
-    return [
-      new HtmlWebpackPlugin({ //入口配置
-        filename: `index.html`,// 生成文件名
-        template: 'index.html', // 模板文件
-        chunks: [`${path}/js/main`],
-        static: path
-      }),
-      ...plugins,
-      ...config.default.plugins
-    ]
-  }
+var chunksDefault = {
+  name: 'chunk',
+  test: /[\\/]common|assets|components|node_modules[\\/]/
 }
+
+var {name} = {
+  ...chunksDefault,
+  ...config.default.chunks
+}
+
+var configEnv = {}
+var configGlobal = {}
+for (key in config.default.global) {
+  configGlobal[key] = JSON.stringify(config.default.global[key])
+}
+for (key in config.default.env) {
+  configEnv[key] = JSON.stringify(config.default.env[key])
+}
+var plugins = [
+  new setConf(),
+  new CopyWebpackPlugin([
+    { 
+      from: resolve('static'), 
+      to: resolve(`${config.default.output}/${path}`)
+    }
+  ]),
+  new webpack.DefinePlugin({
+    'Global': configGlobal,
+    'ENV': configEnv[_G.env]
+  })
+]
+if (dashboard) {
+  plugins.push(new DashboardPlugin(dashboardConfig.setData))
+} else {
+  plugins.push(new FriendlyErrorsWebpackPlugin())
+}
+if (isDev) {
+  plugins.push(new webpack.HotModuleReplacementPlugin())
+}
+
+
+if (type === 'multi') {
+  var HWPs = []
+  for (var item in entrys) {
+    HWPs.push(
+      new HtmlWebpackPlugin({ //入口配置
+        filename: `${item}.html`,// 生成文件名
+        template: 'index.html', // 模板文件
+        chunks: [`${item}`, `${item.split('/')[0]}/${name}`],
+        static: publicPath + path
+      })
+    )
+  }
+  plugins = [
+    ...HWPs,
+    ...plugins,
+    ...config.default.plugins
+  ]
+} else {
+  plugins = [
+    new HtmlWebpackPlugin({ //入口配置
+      filename: `index.html`,// 生成文件名
+      template: 'index.html', // 模板文件
+      chunks: [`${path}/js/main`],
+      static: path
+    }),
+    ...plugins,
+    ...config.default.plugins
+  ]
+}
+module.exports = plugins

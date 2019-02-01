@@ -11,7 +11,6 @@ module.exports = {
     port: config.dev.port, // 端口
     hot: true, //热替换
     noInfo: true,
-    stats: 'errors-only',
     overlay: { //页面弹出错误信息
       warnings: false,
       errors: true
@@ -19,6 +18,9 @@ module.exports = {
     progress: true, //输出进度到控制台
     quiet: true,
     openPage: config.dev.open
+  },
+  performance: {
+    hints: false
   },
   externals: config.default.externals,
   resolve: config.default.resolve,
