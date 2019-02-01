@@ -5,8 +5,8 @@
   <a href="https://travis-ci.org/Taoja/dividing"><img src="https://travis-ci.org/Taoja/dividing.svg?branch=master" alt="autobuild"></a>
   <a href="https://npmcharts.com/compare/dividing?minimal=true"><img src="https://img.shields.io/npm/dm/dividing.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/dividing"><img src="https://img.shields.io/npm/v/dividing.svg" alt="Version"></a>
-  <!-- <a href="https://github.com/taoja/dividing/releases"><img src="https://img.shields.io/github/release/taoja/dividing.svg" alt="Version"></a>
-  <a href="https://github.com/taoja/dividing/issues"><img src="https://img.shields.io/github/issues/taoja/dividing.svg" alt="issues"></a> -->
+  <a href="https://github.com/taoja/dividing/releases"><img src="https://img.shields.io/github/release/taoja/dividing.svg" alt="Version"></a>
+  <a href="https://github.com/taoja/dividing/issues"><img src="https://img.shields.io/github/issues/taoja/dividing.svg" alt="issues"></a>
   <a href="https://www.npmjs.com/package/dividing"><img src="https://img.shields.io/npm/l/dividing.svg" alt="License"></a>
   <a href="https://packagephobia.now.sh/result?p=dividing"><img src="https://packagephobia.now.sh/badge?p=dividing" alt="install size"></a>
 </p>
@@ -178,10 +178,12 @@ src/modules/下的文件夹为离线包名称、输入各离线包名可以实�
 默认配置项，dev、build公共配置属性
 
 + output - build输出目录，默认为dist
++ chunks - 业务包内公共代码提取
 + resolve - 解析，配置缩写及简写
 + externals - 外部扩展，用于引入静态第三方库
 + env - 环境变量配置，第一个环境为默认环境
 + global - 全局变量配置
++ packageID - 配置业务包id，run zips时根据ID打包为对应ID名的zips文件
 + plugins - webpack插件列表，默认使用vue加载器、打包相关插件无需引入
 + loader - webpack loader列表
 
@@ -191,6 +193,7 @@ src/modules/下的文件夹为离线包名称、输入各离线包名可以实�
 + host - 实时调试模式监听ip，默认0.0.0.0 等效于localhost
 + devtool - sourcemap配置
 + open - 实时调试模式开启后自动开启的页面
++ proxy - 用于本地调试时访问跨域接口
 
 ## build
 编译模式相关配置
