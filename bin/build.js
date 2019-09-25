@@ -26,7 +26,7 @@ function build (options) {
     })
   } else {
     compiler.run((err, stats) => {
-      // console.log(stats.toJson())
+      // console.log(compiler)
     })
   }
 }
