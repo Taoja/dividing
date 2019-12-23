@@ -3,13 +3,12 @@ const config = require('../lib/config')
 
 var chunksDefault = {
   name: 'chunk',
-  test: /[\\/]common|assets|components|node_modules[\\/]/,
+  test: /[\\/]assets[\\/]/,
   minChunks: 2
 }
 
 var chunksConfig = {
   ...chunksDefault,
-  ...config.default.chunks
 }
 var name = chunksConfig.name
 delete chunksConfig.name
@@ -27,11 +26,18 @@ choices.forEach((e) => {
     ...chunksConfig
   }
 })
+var splitChunks = {
+  ...config.default.optimization.splitChunks || {}
+}
+
+delete config.default.optimization.splitChunks
 module.exports = {
   splitChunks: {
     cacheGroups: {
       default: false,
       ...splitChunksGroup
-    }
-  }
+    },
+    ...splitChunks
+  },
+  ...config.default.optimization
 }

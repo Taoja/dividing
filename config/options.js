@@ -1,4 +1,3 @@
-const { type } = require('../lib/args')
 const build = require('../bin/build')
 
 const {entry, output} = require('./io')
@@ -9,9 +8,7 @@ const optimization = require('./optimization')
 const op = function () {
   var options = public
 
-  if (type === 'multi') {
-    options.optimization = optimization
-  }
+  options.optimization = optimization
   options.entry = entry
   options.output = output
   options.plugins = plugins

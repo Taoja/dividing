@@ -7,7 +7,7 @@ global._G = {}
 
 var args = process.argv
 var argEnv = args.filter((e) => {
-  return e in config.default.env
+  return e in config.env
 })
 var argPackage = args.filter((e) => {
   return packages.indexOf(e) >= 0

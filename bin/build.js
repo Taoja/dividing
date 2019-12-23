@@ -16,8 +16,8 @@ function build (options) {
   
   if (isDev) {
     var server = new webpackDevServer(compiler, options.devServer)
-    for (var key in config.dev.proxy) {
-      server.use(key, httpProxyMiddleware(config.dev.proxy[key]))
+    for (var key in options.devServer.proxy) {
+      server.use(key, httpProxyMiddleware(options.devServer.proxy[key]))
     }
     server.listen(options.devServer.port, options.devServer.host, ()=> {
       if (options.devServer.openPage) {

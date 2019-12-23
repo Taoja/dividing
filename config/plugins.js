@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = require('../lib/config')
 const {path, publicPath} = require('./static')
-const {isDev, type, dashboard} = require('../lib/args')
+const {isDev, dashboard} = require('../lib/args')
 const resolve = require('../lib/resolve')
 const entrys = require('../lib/ps')
 
@@ -17,23 +17,13 @@ if (dashboard) {
   var dashboardConfig = new Dashboard();
 }
 
-var chunksDefault = {
-  name: 'chunk',
-  test: /[\\/]common|assets|components|node_modules[\\/]/
-}
-
-var {name} = {
-  ...chunksDefault,
-  ...config.default.chunks
-}
-
 var configEnv = {}
 var configGlobal = {}
-for (key in config.default.global) {
-  configGlobal[key] = JSON.stringify(config.default.global[key])
+for (key in config.global) {
+  configGlobal[key] = JSON.stringify(config.global[key])
 }
-for (key in config.default.env) {
-  configEnv[key] = JSON.stringify(config.default.env[key])
+for (key in config.env) {
+  configEnv[key] = JSON.stringify(config.env[key])
 }
 var plugins = [
   new setConf(),
@@ -58,33 +48,21 @@ if (isDev) {
 }
 
 
-if (type === 'multi') {
-  var HWPs = []
-  for (var item in entrys) {
-    HWPs.push(
-      new HtmlWebpackPlugin({ //入口配置
-        filename: `${item}.html`,// 生成文件名
-        template: 'index.html', // 模板文件
-        chunks: [`${item}`, `${item.split('/')[0]}/${name}`],
-        static: publicPath + path
-      })
-    )
-  }
-  plugins = [
-    ...HWPs,
-    ...plugins,
-    ...config.default.plugins
-  ]
-} else {
-  plugins = [
+var HWPs = []
+for (var item in entrys) {
+  HWPs.push(
     new HtmlWebpackPlugin({ //入口配置
-      filename: `index.html`,// 生成文件名
+      filename: `${item}.html`,// 生成文件名
       template: 'index.html', // 模板文件
-      chunks: [`${path}/js/main`],
-      static: path
-    }),
-    ...plugins,
-    ...config.default.plugins
-  ]
+      chunks: [`${item}`, `${item.split('/')[0]}/chunk`],
+      static: publicPath + path,
+      hash: true
+    })
+  )
 }
+plugins = [
+  ...HWPs,
+  ...plugins,
+  ...config.default.plugins
+]
 module.exports = plugins
