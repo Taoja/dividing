@@ -4,7 +4,6 @@ const httpProxyMiddleware = require('http-proxy-middleware')
 const opn = require('opn')
 
 const { isDev } = require('../lib/args')
-const config = require('../lib/config')
 
 function build (options) {
 

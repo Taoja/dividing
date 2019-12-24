@@ -1,5 +1,6 @@
 const rmrf = require('rimraf')
-
+const entrys = require('../lib/ps')
+global._G.entrys = entrys
 const config = require('../lib/config')
 const resolve = require('../lib/resolve')
 const options = require('../config/options')
