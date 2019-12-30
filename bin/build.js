@@ -25,7 +25,7 @@ function build (options) {
     })
   } else {
     compiler.run((err, stats) => {
-      // console.log(compiler)
+      console.log(err)
     })
   }
 }
