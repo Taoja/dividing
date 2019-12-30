@@ -1,8 +1,10 @@
 const rl = require('./lib/rl')
 const env = require('./lib/env')
-const { packages } = require('./lib/fs.js')
+const { packages, packageConfig } = require('./lib/fs.js')
 
-global._G = {}
+global._G = {
+  config: packageConfig
+}
 
 var args = process.argv
 var argEnv = args[0]
