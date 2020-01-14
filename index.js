@@ -6,14 +6,14 @@ global._G = {
   config: packageConfig
 }
 
-var args = process.argv
+var args = process.argv.slice(2)
 var argEnv = args[0]
 var argPackage = args.filter((e) => {
   return packages.indexOf(e) >= 0
 })
 
 if (argPackage.length > 0) {
-  _G.env = argEnv[0]
+  _G.env = argEnv
   _G.packages = argPackage
   require('./bin/index')()
 } else {
