@@ -25,7 +25,10 @@ if (__isEmptyObject(config.default.output)) {
 }
 
 var io = {
-  entry: entrys,
+  entry: {
+    ...entrys,
+    ...config.default.entry
+  },
   output
 }
 module.exports = io
