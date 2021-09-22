@@ -16,6 +16,7 @@
     "url": "https://github.com/Taoja/dividing/issues",
     "email": "346792184@qq.com"
   },
+  "bin": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\""
   },
